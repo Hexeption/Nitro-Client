@@ -1,0 +1,9 @@
+/*
+!/.gitignore
+!/src
+!/gradle
+!/gradlew
+!/gradlew.bat
+!/README.md
+!/build.gradle
+!/settings.gradle
