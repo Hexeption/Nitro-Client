@@ -36,7 +36,7 @@ public class TestClient implements IGameHud {
 
         ScaledResolution scaledResolution = new ScaledResolution(minecraft);
 
-        FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
+        FontRenderer font = Minecraft.getMinecraft().fontRenderer;
 
         font.drawString("Hud Client", 2, 2, new Color(88, 127, 82, 241).hashCode());
 
