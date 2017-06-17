@@ -17,6 +17,7 @@
 
 package uk.co.hexeption.client.mod;
 
+import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.client.event.EventListener;
 import uk.co.hexeption.client.managers.EventManager;
@@ -25,6 +26,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 public abstract class Mod implements EventListener {
+
+    protected Minecraft mc = Minecraft.getMinecraft();
 
     private String name = getClass().getAnnotation(ModInfo.class).name();
 
@@ -35,7 +38,6 @@ public abstract class Mod implements EventListener {
     private int bind = getClass().getAnnotation(ModInfo.class).bind();
 
     private boolean state;
-
 
     public boolean getState() {
 
@@ -61,15 +63,15 @@ public abstract class Mod implements EventListener {
         setState(!this.state);
     }
 
-    private void onToggle() {
+    public void onToggle() {
 
     }
 
-    private void onDisable() {
+    public void onDisable() {
 
     }
 
-    private void onEnable() {
+    public void onEnable() {
 
     }
 

@@ -32,11 +32,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import uk.co.hexeption.client.Client;
 import uk.co.hexeption.client.event.Event;
 import uk.co.hexeption.client.event.events.EventClick;
+import uk.co.hexeption.client.event.events.EventKeyboard;
 import uk.co.hexeption.client.event.events.EventTick;
 import uk.co.hexeption.client.event.events.EventWorld;
 import uk.co.hexeption.client.managers.EventManager;
 import uk.co.hexeption.client.mixin.imp.IMixinMinecraft;
-import uk.co.hexeption.client.utils.InputHandler;
 
 import javax.annotation.Nullable;
 
@@ -68,11 +68,9 @@ public abstract class MixinMinecraft implements IMixinMinecraft {
 
     @Inject(method = "runTickKeyboard", at = @At("HEAD"))
     private void onKeyboard(CallbackInfo callbackInfo) {
-
-        if (Keyboard.getEventKeyState()) {
-            InputHandler.handleKeyboard();
-        }
-
+        
+        EventKeyboard event = new EventKeyboard(Event.Type.PRE, Keyboard.getEventKey());
+        EventManager.handleEvent(event);
     }
 
     @Inject(method = "clickMouse", at = @At("HEAD"))

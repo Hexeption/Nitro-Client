@@ -18,8 +18,8 @@
 package uk.co.hexeption.client.managers;
 
 import com.google.common.collect.Lists;
+import org.reflections.Reflections;
 import uk.co.hexeption.client.mod.Mod;
-import uk.co.hexeption.client.mod.mods.Test;
 import uk.co.hexeption.client.utils.LogHelper;
 
 import java.util.List;
@@ -39,14 +39,13 @@ public class ModManager {
 
     private void initMods() {
 
-        addMods(new Test());
-    }
-
-    public void addMods(final Mod... mods) {
-
-        for (final Mod mod : mods) {
-            this.MODS.add(mod);
-        }
+        new Reflections("uk.co.hexeption.client.mod.mods").getSubTypesOf(Mod.class).forEach(mod -> {
+            try {
+                this.MODS.add(mod.newInstance());
+            } catch (InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public List<Mod> getMods() {

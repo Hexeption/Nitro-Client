@@ -17,7 +17,9 @@
 
 package uk.co.hexeption.client;
 
+import uk.co.hexeption.client.event.EventHandler;
 import uk.co.hexeption.client.managers.ModManager;
+import uk.co.hexeption.client.ui.hud.Hud;
 import uk.co.hexeption.client.utils.LogHelper;
 
 public enum Client {
@@ -26,11 +28,18 @@ public enum Client {
 
     public final ModManager modManager = new ModManager();
 
+    public final EventHandler eventHandler = new EventHandler();
+
+    public final Hud hud = new Hud();
+
 
     public void start() {
 
         LogHelper.info("Loading Mods...");
         modManager.init();
+
+        LogHelper.info("Loading Hud...");
+        hud.initialization();
 
         Runtime.getRuntime().addShutdownHook(new Thread(this::end));
     }
