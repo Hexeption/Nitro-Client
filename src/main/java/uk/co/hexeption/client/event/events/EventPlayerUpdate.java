@@ -1,5 +1,11 @@
 package uk.co.hexeption.client.event.events;
 
-public class EventPlayerUpdate {
+import uk.co.hexeption.client.event.Event;
 
+public class EventPlayerUpdate extends Event {
+
+    public EventPlayerUpdate(Type type) {
+
+        super(type);
+    }
 }

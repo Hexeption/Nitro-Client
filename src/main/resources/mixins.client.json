@@ -4,7 +4,15 @@
   "refmap": "mixins.client.refmap.json",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "MixinEntity",
+    "MixinEntityLivingBase",
+    "MixinEntityPlayerSP",
+    "MixinEntityRenderer",
+    "MixinGuiIngame",
     "MixinMinecraft",
-    "MixinEntityRenderer"
+    "MixinNetworkManager",
+    "MixinRender",
+    "MixinRenderLivingBase",
+    "MixinRenderManager"
   ]
 }
