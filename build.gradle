@@ -38,7 +38,7 @@ minecraft {
     version = '1.12'
     runDir = 'run'
     tweakClass = 'uk.co.hexeption.launch.Launcher'
-    mappings = 'snapshot_20170613'
+    mappings = 'snapshot_20170617'
     useDepAts = true
 
     makeObfSourceJar = true
