@@ -22,13 +22,12 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'maven'
 apply plugin: 'net.minecraftforge.gradle.tweaker-client'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: "com.github.johnrengelman.shadow"
 
 group 'uk.co.hexeption'
-version '1.0'
+version '1.0-SNAPSHOT'
 
 sourceCompatibility = targetCompatibility = 1.8
 compileJava {
