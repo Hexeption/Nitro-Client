@@ -18,23 +18,31 @@
 
 package uk.co.hexeption.client.mod.mods;
 
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
 import org.lwjgl.input.Keyboard;
+import uk.co.hexeption.client.events.EventUpdate;
 import uk.co.hexeption.client.mod.Mod;
 
 @Mod.ModInfo(name = "Fly", description = "de", category = Mod.Category.TEST, bind = Keyboard.KEY_F)
 public class Fly extends Mod {
 
+    @EventHandler
+    private Listener<EventUpdate> eventUpdateListener = new Listener<>(eventUpdate -> {
+        mc.player.capabilities.isFlying = true;
+        mc.player.motionY = Boolean.compare(mc.gameSettings.keyBindJump.isKeyDown(), mc.gameSettings.keyBindSneak.isKeyDown()) * 0.3;
+        mc.player.capabilities.setFlySpeed(0.09f);
+    });
+
     @Override
     public void onDisable() {
 
         mc.player.capabilities.isFlying = false;
+        mc.player.capabilities.setFlySpeed(0.05f);
     }
 
     @Override
     public void onEnable() {
-
-        mc.player.capabilities.isFlying = true;
+        //Maybe?
     }
-
-
 }

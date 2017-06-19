@@ -4,6 +4,7 @@
   "refmap": "mixins.client.refmap.json",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "MixinAbstractClientPlayer",
     "MixinEntity",
     "MixinEntityLivingBase",
     "MixinEntityPlayerSP",

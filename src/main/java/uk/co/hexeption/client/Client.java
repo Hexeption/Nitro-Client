@@ -24,6 +24,7 @@ import uk.co.hexeption.client.events.EventsHandler;
 import uk.co.hexeption.client.managers.ClientEventManager;
 import uk.co.hexeption.client.managers.ModManager;
 import uk.co.hexeption.client.ui.hud.Hud;
+import uk.co.hexeption.client.utils.Auth;
 import uk.co.hexeption.client.utils.LogHelper;
 
 public enum Client {
@@ -39,6 +40,9 @@ public enum Client {
     public final EventsHandler eventsHandler = new EventsHandler();
 
     public void start() {
+
+        //TODO: TEST (Random Alt)
+//        Auth.INSTANCE().username("email@email.com").password("password").login();
 
         LogHelper.info("Loading Mods...");
         modManager.init();
