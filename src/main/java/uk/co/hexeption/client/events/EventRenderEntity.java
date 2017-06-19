@@ -15,12 +15,12 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event.events;
+package uk.co.hexeption.client.events;
 
+import me.zero.alpine.type.Cancellable;
 import net.minecraft.entity.Entity;
-import uk.co.hexeption.client.event.Event;
 
-public class EventRenderEntity extends Event {
+public class EventRenderEntity extends Cancellable {
 
     private final Entity entity;
 
@@ -28,9 +28,8 @@ public class EventRenderEntity extends Event {
 
     private final float yaw, ticks;
 
-    public EventRenderEntity(Type type, Entity entity, double x, double y, double z, float yaw, float ticks) {
+    public EventRenderEntity(Entity entity, double x, double y, double z, float yaw, float ticks) {
 
-        super(type);
         this.entity = entity;
         this.x = x;
         this.y = y;

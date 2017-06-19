@@ -15,29 +15,19 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.managers;
+package uk.co.hexeption.client.events;
 
-import com.google.common.collect.Lists;
-import uk.co.hexeption.client.event.Event;
-import uk.co.hexeption.client.event.EventListener;
+public class EventHud {
 
-import java.util.Comparator;
-import java.util.List;
+    private final float partialTicks;
 
-public class EventManager {
+    public EventHud(float partialTicks) {
 
-    private static final List<EventListener> LISTENERS = Lists.newCopyOnWriteArrayList();
-
-    public static void register(EventListener listener) {
-
-        LISTENERS.add(listener);
-        LISTENERS.sort(Comparator.comparing(EventListener::getPriority));
+        this.partialTicks = partialTicks;
     }
 
-    public static void handleEvent(Event event) {
+    public float getPartialTicks() {
 
-        for (EventListener listener : LISTENERS) {
-            listener.onEvent(event);
-        }
+        return partialTicks;
     }
 }

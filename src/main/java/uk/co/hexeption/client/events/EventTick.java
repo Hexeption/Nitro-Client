@@ -15,14 +15,8 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event.events;
+package uk.co.hexeption.client.events;
 
-import uk.co.hexeption.client.event.Event;
+public class EventTick {
 
-public class EventPlayerUpdate extends Event {
-
-    public EventPlayerUpdate(Type type) {
-
-        super(type);
-    }
 }

@@ -15,20 +15,19 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event.events;
+package uk.co.hexeption.client.events;
 
+import me.zero.alpine.type.Cancellable;
 import net.minecraft.entity.MoverType;
-import uk.co.hexeption.client.event.Event;
 
-public class EventMove extends Event {
+public class EventMove extends Cancellable {
 
     private final MoverType moverType;
 
     private double motionX, motionY, motionZ;
 
-    public EventMove(Type type, MoverType moverType, double motionX, double motionY, double motionZ) {
+    public EventMove(MoverType moverType, double motionX, double motionY, double motionZ) {
 
-        super(type);
         this.moverType = moverType;
         this.motionX = motionX;
         this.motionY = motionY;

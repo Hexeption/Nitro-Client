@@ -15,33 +15,23 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event;
+package uk.co.hexeption.client.events;
 
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.client.Client;
-import uk.co.hexeption.client.event.events.EventKeyboard;
-import uk.co.hexeption.client.managers.EventManager;
 
-public class EventHandler implements EventListener {
+public class EventsHandler {
 
-    public EventHandler() {
+    @EventHandler
+    private final Listener<EventKey> keyListener = new Listener<>(event -> Client.INSTANCE.modManager.getMods().forEach(mod -> {
 
-        EventManager.register(this);
-    }
-
-    @Override
-    public void onEvent(Event event) {
-
-        if (event instanceof EventKeyboard) {
-            Client.INSTANCE.modManager.getMods().forEach(mod -> {
-                if (Keyboard.getEventKey() == mod.getBind()) {
-                    if (Keyboard.getEventKeyState()) {
-                        mod.toggle();
-                    }
-                }
-            });
+        if (Keyboard.getEventKey() == mod.getBind()) {
+            mod.toggle();
         }
 
-        //Other Events:
-    }
+    }));
+
+
 }

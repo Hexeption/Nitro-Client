@@ -67,6 +67,9 @@ configurations {
 
 
 dependencies {
+    //Event's
+    compile 'com.github.ZeroMemes:Alpine:1.4'
+
     compile('org.reflections:reflections:0.9.11') {
         exclude module: 'google-collections'
     }
@@ -87,6 +90,8 @@ shadowJar {
         include(dependency('org.spongepowered:mixin'))
         include(dependency('org.reflections:reflections'))
         include(dependency('org.javassist:javassist'))
+        include(dependency('com.github.ZeroMemes:Alpine'))
+        include(dependency('net.jodah:typetools'))
     }
 
     exclude 'dummyThing'

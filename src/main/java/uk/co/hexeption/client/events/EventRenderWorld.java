@@ -15,35 +15,22 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event.events;
+package uk.co.hexeption.client.events;
 
-import net.minecraft.entity.Entity;
-import uk.co.hexeption.client.event.Event;
 
-public class EventTeamColour extends Event {
+import me.zero.alpine.type.EventState;
 
-    private final Entity entity;
+public class EventRenderWorld {
 
-    private int color = 0xffffffff;
+    private EventState eventState;
 
-    public EventTeamColour(Type type, Entity entity) {
+    public EventRenderWorld(EventState eventState) {
 
-        super(type);
-        this.entity = entity;
+        this.eventState = eventState;
     }
 
-    public Entity getEntity() {
+    public EventState getEventState() {
 
-        return entity;
-    }
-
-    public int getColor() {
-
-        return color;
-    }
-
-    public void setColor(int color) {
-
-        this.color = color;
+        return eventState;
     }
 }

@@ -15,21 +15,19 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event.events;
+package uk.co.hexeption.client.events;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
-import uk.co.hexeption.client.event.Event;
 
-public class EventPlayerDeath extends Event {
+public class EventPlayerDeath {
 
     private final EntityLivingBase entity;
 
     private final DamageSource source;
 
-    public EventPlayerDeath(Type type, EntityLivingBase entity, DamageSource source) {
+    public EventPlayerDeath(EntityLivingBase entity, DamageSource source) {
 
-        super(type);
         this.entity = entity;
         this.source = source;
     }

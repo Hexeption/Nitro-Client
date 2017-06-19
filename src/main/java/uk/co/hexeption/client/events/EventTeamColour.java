@@ -15,22 +15,34 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event.events;
+package uk.co.hexeption.client.events;
 
-import uk.co.hexeption.client.event.Event;
+import me.zero.alpine.type.Cancellable;
+import net.minecraft.entity.Entity;
 
-public class EventHud extends Event {
+public class EventTeamColour extends Cancellable {
 
-    private final float partialTicks;
+    private final Entity entity;
 
-    public EventHud(Type type, float partialTicks) {
+    private int color = 0xffffffff;
 
-        super(type);
-        this.partialTicks = partialTicks;
+    public EventTeamColour(Entity entity) {
+
+        this.entity = entity;
     }
 
-    public float getPartialTicks() {
+    public Entity getEntity() {
 
-        return partialTicks;
+        return entity;
+    }
+
+    public int getColor() {
+
+        return color;
+    }
+
+    public void setColor(int color) {
+
+        this.color = color;
     }
 }
