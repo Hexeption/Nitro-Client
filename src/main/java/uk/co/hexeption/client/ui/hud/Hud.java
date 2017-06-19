@@ -19,9 +19,9 @@ package uk.co.hexeption.client.ui.hud;
 
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
-import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.Display;
 import uk.co.hexeption.client.Client;
+import uk.co.hexeption.client.IMC;
 import uk.co.hexeption.client.events.EventHud;
 import uk.co.hexeption.client.events.EventKey;
 import uk.co.hexeption.client.ui.hud.themes.TestClient;
@@ -29,7 +29,7 @@ import uk.co.hexeption.client.ui.hud.themes.TestClient;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Hud {
+public class Hud implements IMC {
 
     private final List<IGameHud> themes = new CopyOnWriteArrayList<>();
 
@@ -37,11 +37,11 @@ public class Hud {
 
     @EventHandler
     private Listener<EventHud> renderHud = new Listener<EventHud>(event -> {
-        if (Minecraft.getMinecraft().gameSettings.showDebugInfo)
+        if (mc.gameSettings.showDebugInfo)
             return;
 
         IGameHud currentTheme = getCurrentTheme();
-        currentTheme.render(Minecraft.getMinecraft(), Display.getWidth(), Display.getHeight());
+        currentTheme.render(mc, Display.getWidth(), Display.getHeight());
     });
 
     @EventHandler

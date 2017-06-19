@@ -15,30 +15,15 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.events;
+package uk.co.hexeption.client;
 
-import me.zero.alpine.listener.EventHandler;
-import me.zero.alpine.listener.Listener;
-import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.client.Client;
-import uk.co.hexeption.client.IMC;
+import net.minecraft.client.Minecraft;
+import uk.co.hexeption.client.mixin.imp.IMixinMinecraft;
 
-import static org.lwjgl.input.Keyboard.KEYBOARD_SIZE;
+public interface IMC {
 
-public class EventsHandler implements IMC {
+    Minecraft mc = Minecraft.getMinecraft();
 
-    private final boolean[] keyMap = new boolean[KEYBOARD_SIZE];
-
-
-    @EventHandler
-    private final Listener<EventKey> keyListener = new Listener<>(event -> Client.INSTANCE.modManager.getMods().forEach(mod -> {
-
-        if (Keyboard.getEventKey() == mod.getBind()) {
-            mod.toggle();
-        }
-
-    }));
-
-
+    IMixinMinecraft mixMC = (IMixinMinecraft) mc;
 
 }

@@ -63,7 +63,7 @@ public abstract class MixinMinecraft implements IMixinMinecraft {
         Client.INSTANCE.eventBus.post(new EventTick());
     }
 
-    @Inject(method = "runTickKeyboard", at = @At("HEAD"))
+    @Inject(method = "runTickKeyboard", at = @At(value = "INVOKE", remap = false, target = "Lorg/lwjgl/input/Keyboard;getEventKey()I", ordinal = 0, shift = At.Shift.BEFORE))
     private void onKeyboard(CallbackInfo callbackInfo) {
 
         int key = Keyboard.getEventKey() == 0 ? Keyboard.getEventCharacter() + 256 : Keyboard.getEventKey();
@@ -79,7 +79,7 @@ public abstract class MixinMinecraft implements IMixinMinecraft {
         Client.INSTANCE.eventBus.post(new EventClick(EventClick.MouseButtons.LEFT));
     }
 
-    @Inject(method = "runTickKeyboard", at = @At(value = "INVOKE", remap = false, target = "Lorg/lwjgl/input/Keyboard;getEventKey()I", ordinal = 0, shift = At.Shift.BEFORE))
+    @Inject(method = "rightClickMouse", at = @At("HEAD"))
     private void onRightClick(CallbackInfo callbackInfo) {
 
         Client.INSTANCE.eventBus.post(new EventClick(EventClick.MouseButtons.RIGHT));

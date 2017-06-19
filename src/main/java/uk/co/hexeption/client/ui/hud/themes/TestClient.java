@@ -36,11 +36,11 @@ public class TestClient implements IGameHud {
 
         ScaledResolution scaledResolution = new ScaledResolution(minecraft);
 
-        FontRenderer font = Minecraft.getMinecraft().fontRenderer;
+        FontRenderer font = minecraft.fontRenderer;
 
         font.drawString("Hud Client", 2, 2, new Color(88, 127, 82, 241).hashCode());
 
-        y = 10;
+        y = 2;
         Client.INSTANCE.modManager.getMods().stream().filter(Mod::getState).sorted(Comparator.comparingInt(m -> font.getStringWidth(m.getName()))).forEach(mod -> {
             font.drawString(mod.getName(), scaledResolution.getScaledWidth() - 5 - font.getStringWidth(mod.getName()), y, new Color(143, 255, 120, 255).hashCode());
             y += font.FONT_HEIGHT;

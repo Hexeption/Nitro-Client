@@ -17,16 +17,14 @@
 
 package uk.co.hexeption.client.mod;
 
-import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.client.Client;
+import uk.co.hexeption.client.IMC;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-public abstract class Mod {
-
-    protected Minecraft mc = Minecraft.getMinecraft();
+public abstract class Mod implements IMC{
 
     private String name = getClass().getAnnotation(ModInfo.class).name();
 
@@ -47,7 +45,6 @@ public abstract class Mod {
     public void setState(boolean state) {
 
         onToggle();
-        Client.INSTANCE.eventBus.post(this);
         if (state) {
             this.state = true;
             onEnable();
