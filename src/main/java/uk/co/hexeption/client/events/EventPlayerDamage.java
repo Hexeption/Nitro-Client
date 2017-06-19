@@ -15,14 +15,32 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event.events;
+package uk.co.hexeption.client.events;
 
-import uk.co.hexeption.client.event.Event;
+import me.zero.alpine.type.Cancellable;
+import net.minecraft.util.DamageSource;
 
-public class EventLivingUpdate extends Event {
+public class EventPlayerDamage extends Cancellable {
 
-    public EventLivingUpdate(Type type) {
+    private DamageSource damageSource;
 
-        super(type);
+    private float amount;
+
+    public EventPlayerDamage(DamageSource damageSource, float amount) {
+
+        this.damageSource = damageSource;
+        this.amount = amount;
+    }
+
+    public DamageSource getDamageSource() {
+
+        return damageSource;
+    }
+
+    public float getAmount() {
+
+        return amount;
     }
 }
+
+

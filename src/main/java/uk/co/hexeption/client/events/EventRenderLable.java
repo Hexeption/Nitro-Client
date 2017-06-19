@@ -15,12 +15,12 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event.events;
+package uk.co.hexeption.client.events;
 
+import me.zero.alpine.type.Cancellable;
 import net.minecraft.entity.Entity;
-import uk.co.hexeption.client.event.Event;
 
-public class EventRenderLable extends Event {
+public class EventRenderLable extends Cancellable {
 
     private Entity entity;
 
@@ -30,9 +30,8 @@ public class EventRenderLable extends Event {
 
     private int maxDistance;
 
-    public EventRenderLable(Type type, Entity entity, String lable, double x, double y, double z, int maxDistance) {
+    public EventRenderLable(Entity entity, String lable, double x, double y, double z, int maxDistance) {
 
-        super(type);
         this.entity = entity;
         this.lable = lable;
         this.x = x;

@@ -15,40 +15,44 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event.events;
+package uk.co.hexeption.client.events;
 
-import uk.co.hexeption.client.event.Event;
+import me.zero.alpine.type.Cancellable;
+import net.minecraft.network.Packet;
 
-public class EventClick extends Event {
+public class EventPacket extends Cancellable {
 
-    private MouseButtons mouseButtons;
+    private Packet<?> packet;
 
-    public EventClick(Type type, MouseButtons mouseButtons) {
+    public EventPacket(Packet<?> packet) {
 
-        super(type);
-        this.mouseButtons = mouseButtons;
+        this.packet = packet;
     }
 
-    public MouseButtons getMouseButtons() {
+    public final Packet<?> getPacket() {
 
-        return mouseButtons;
+        return this.packet;
     }
 
-    public enum MouseButtons {
-        LEFT(0), RIGHT(1), MIDDLE(2);
 
-        private int clickID;
+    public final Packet<?> setPacket(Packet<?> packet) {
 
-        MouseButtons(int clickID) {
+        return this.packet = packet;
+    }
 
-            this.clickID = clickID;
-        }
+    public static class Send extends EventPacket {
 
-        public int getClickID() {
+        public Send(Packet<?> packet) {
 
-            return clickID;
+            super(packet);
         }
     }
 
+    public static class Receive extends EventPacket {
 
+        public Receive(Packet<?> packet) {
+
+            super(packet);
+        }
+    }
 }

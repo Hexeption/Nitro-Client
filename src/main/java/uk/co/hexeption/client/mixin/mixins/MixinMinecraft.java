@@ -30,12 +30,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import uk.co.hexeption.client.Client;
-import uk.co.hexeption.client.event.Event;
-import uk.co.hexeption.client.event.events.EventClick;
-import uk.co.hexeption.client.event.events.EventKeyboard;
-import uk.co.hexeption.client.event.events.EventTick;
-import uk.co.hexeption.client.event.events.EventWorld;
-import uk.co.hexeption.client.managers.EventManager;
+import uk.co.hexeption.client.events.EventClick;
+import uk.co.hexeption.client.events.EventKey;
+import uk.co.hexeption.client.events.EventTick;
+import uk.co.hexeption.client.events.EventWorld;
 import uk.co.hexeption.client.mixin.imp.IMixinMinecraft;
 
 import javax.annotation.Nullable;
@@ -62,52 +60,45 @@ public abstract class MixinMinecraft implements IMixinMinecraft {
     @Inject(method = "runTick", at = @At("HEAD"))
     private void onTick(CallbackInfo callbackInfo) {
 
-        EventTick eventTick = new EventTick(Event.Type.PRE);
-        EventManager.handleEvent(eventTick);
+        Client.INSTANCE.eventBus.post(new EventTick());
     }
 
     @Inject(method = "runTickKeyboard", at = @At("HEAD"))
     private void onKeyboard(CallbackInfo callbackInfo) {
-        
-        EventKeyboard event = new EventKeyboard(Event.Type.PRE, Keyboard.getEventKey());
-        EventManager.handleEvent(event);
+
+        int key = Keyboard.getEventKey() == 0 ? Keyboard.getEventCharacter() + 256 : Keyboard.getEventKey();
+
+        if (Keyboard.getEventKeyState()) {
+            Client.INSTANCE.eventBus.post(new EventKey(key));
+        }
     }
 
     @Inject(method = "clickMouse", at = @At("HEAD"))
     private void onLeftClick(CallbackInfo callbackInfo) {
 
-        EventClick eventClick = new EventClick(Event.Type.PRE, EventClick.MouseButtons.LEFT);
-        EventManager.handleEvent(eventClick);
-
+        Client.INSTANCE.eventBus.post(new EventClick(EventClick.MouseButtons.LEFT));
     }
 
-    @Inject(method = "rightClickMouse", at = @At("HEAD"))
+    @Inject(method = "runTickKeyboard", at = @At(value = "INVOKE", remap = false, target = "Lorg/lwjgl/input/Keyboard;getEventKey()I", ordinal = 0, shift = At.Shift.BEFORE))
     private void onRightClick(CallbackInfo callbackInfo) {
 
-        EventClick eventClick = new EventClick(Event.Type.PRE, EventClick.MouseButtons.RIGHT);
-        EventManager.handleEvent(eventClick);
-
+        Client.INSTANCE.eventBus.post(new EventClick(EventClick.MouseButtons.RIGHT));
     }
 
     @Inject(method = "middleClickMouse", at = @At("HEAD"))
     private void onMiddleClick(CallbackInfo callbackInfo) {
 
-        EventClick eventClick = new EventClick(Event.Type.PRE, EventClick.MouseButtons.MIDDLE);
-        EventManager.handleEvent(eventClick);
-
+        Client.INSTANCE.eventBus.post(new EventClick(EventClick.MouseButtons.MIDDLE));
     }
 
     @Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V", at = @At("HEAD"))
     private void loadWorld(@Nullable WorldClient worldClientIn, String loadingMessage, CallbackInfo callbackInfo) {
 
-        Event event;
         if (worldClientIn != null) {
-            event = new EventWorld.Load(Event.Type.PRE, worldClientIn);
+            Client.INSTANCE.eventBus.post(new EventWorld.Load(worldClientIn));
         } else {
-            event = new EventWorld.Unload(Event.Type.PRE, null);
+            Client.INSTANCE.eventBus.post(new EventWorld.Unload());
         }
-
-        EventManager.handleEvent(event);
     }
 
     @Override

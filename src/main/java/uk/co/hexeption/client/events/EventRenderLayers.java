@@ -15,21 +15,20 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event.events;
+package uk.co.hexeption.client.events;
 
+import me.zero.alpine.type.Cancellable;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.EntityLivingBase;
-import uk.co.hexeption.client.event.Event;
 
-public class EventRenderLayers extends Event {
+public class EventRenderLayers extends Cancellable {
 
     private final EntityLivingBase entityLivingBase;
 
     private final LayerRenderer layerRenderer;
 
-    public EventRenderLayers(Type type, EntityLivingBase entityLivingBase, LayerRenderer layerRenderer) {
+    public EventRenderLayers(EntityLivingBase entityLivingBase, LayerRenderer layerRenderer) {
 
-        super(type);
         this.entityLivingBase = entityLivingBase;
         this.layerRenderer = layerRenderer;
     }

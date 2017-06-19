@@ -19,13 +19,12 @@ package uk.co.hexeption.client.mod;
 
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.client.event.EventListener;
-import uk.co.hexeption.client.managers.EventManager;
+import uk.co.hexeption.client.Client;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-public abstract class Mod implements EventListener {
+public abstract class Mod {
 
     protected Minecraft mc = Minecraft.getMinecraft();
 
@@ -48,11 +47,13 @@ public abstract class Mod implements EventListener {
     public void setState(boolean state) {
 
         onToggle();
+        Client.INSTANCE.eventBus.post(this);
         if (state) {
             this.state = true;
             onEnable();
-            EventManager.register(this);
+            Client.INSTANCE.eventBus.subscribe(this);
         } else {
+            Client.INSTANCE.eventBus.unsubscribe(this);
             this.state = false;
             onDisable();
         }

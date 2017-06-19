@@ -15,14 +15,19 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event.events;
+package uk.co.hexeption.client.events;
 
-import uk.co.hexeption.client.event.Event;
+public class EventKey {
 
-public class EventRenderWorld extends Event {
+    private final int key;
 
-    public EventRenderWorld(Type type) {
+    public EventKey(int key) {
 
-        super(type);
+        this.key = key;
+    }
+
+    public int getKey() {
+
+        return key;
     }
 }

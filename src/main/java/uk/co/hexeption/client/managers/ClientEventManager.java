@@ -15,22 +15,31 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event.events;
+package uk.co.hexeption.client.managers;
 
-import uk.co.hexeption.client.event.Event;
 
-public class EventKeyboard extends Event {
+import me.zero.alpine.EventManager;
 
-    private final int key;
+public class ClientEventManager extends EventManager {
 
-    public EventKeyboard(Type type, int key) {
+    private boolean enabled = true;
 
-        super(type);
-        this.key = key;
+
+    @Override
+    public void post(Object event) {
+
+        if (enabled) {
+            super.post(event);
+        }
     }
 
-    public int getKey() {
+    public boolean isEnabled() {
 
-        return key;
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+
+        this.enabled = enabled;
     }
 }

@@ -15,18 +15,17 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event.events;
+package uk.co.hexeption.client.events;
 
+import me.zero.alpine.type.Cancellable;
 import net.minecraft.client.entity.EntityPlayerSP;
-import uk.co.hexeption.client.event.Event;
 
-public class EventChat extends Event {
+public class EventChat extends Cancellable {
 
     private String message;
 
-    public EventChat(Type type, String message) {
+    public EventChat(String message) {
 
-        super(type);
         this.message = message;
     }
 
@@ -44,9 +43,9 @@ public class EventChat extends Event {
 
         private EntityPlayerSP entityPlayerSP;
 
-        public Send(Type type, String message, EntityPlayerSP entityPlayerSP) {
+        public Send(String message, EntityPlayerSP entityPlayerSP) {
 
-            super(type, message);
+            super(message);
             this.entityPlayerSP = entityPlayerSP;
         }
 
@@ -58,9 +57,9 @@ public class EventChat extends Event {
 
     public static class Recive extends EventChat {
 
-        public Recive(Type type, String message) {
+        public Recive(String message) {
 
-            super(type, message);
+            super(message);
         }
     }
 }

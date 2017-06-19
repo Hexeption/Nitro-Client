@@ -15,45 +15,32 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event;
+package uk.co.hexeption.client.events;
 
-public class Event {
+import net.minecraft.client.multiplayer.WorldClient;
 
-    private Type type;
+public class EventWorld {
 
-    private boolean cancelled;
+    public EventWorld() {
 
-    public Event(Type type) {
-
-        this.type = type;
     }
 
-    public Type getType() {
+    public static class Load {
 
-        return type;
+        private final WorldClient world;
+
+        public Load(WorldClient worldClient) {
+
+            this.world = worldClient;
+        }
+
+        public WorldClient getWorld() {
+
+            return world;
+        }
     }
 
-    public void setType(Type type) {
+    public static class Unload {
 
-        this.type = type;
-    }
-
-    public boolean isCancelled() {
-
-        return cancelled;
-    }
-
-    public void cancel() {
-
-        cancelled = true;
-    }
-
-    public <T extends Event> T cast() {
-
-        return (T) this;
-    }
-
-    public enum Type {
-        PRE, POST
     }
 }

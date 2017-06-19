@@ -22,9 +22,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import uk.co.hexeption.client.event.Event;
-import uk.co.hexeption.client.event.events.EventHud;
-import uk.co.hexeption.client.managers.EventManager;
+import uk.co.hexeption.client.Client;
+import uk.co.hexeption.client.events.EventHud;
 
 @Mixin(GuiIngame.class)
 public class MixinGuiIngame {
@@ -32,7 +31,7 @@ public class MixinGuiIngame {
     @Inject(method = "renderGameOverlay", at = @At("RETURN"))
     private void renderGameOverlay(float partialTicks, CallbackInfo callbackInfo) {
 
-        Event event = new EventHud(Event.Type.PRE, partialTicks);
-        EventManager.handleEvent(event);
+        Client.INSTANCE.eventBus.post(new EventHud(partialTicks));
+
     }
 }

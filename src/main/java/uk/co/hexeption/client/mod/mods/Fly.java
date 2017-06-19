@@ -18,8 +18,6 @@
 package uk.co.hexeption.client.mod.mods;
 
 import org.lwjgl.input.Keyboard;
-import uk.co.hexeption.client.event.Event;
-import uk.co.hexeption.client.event.events.EventPlayerUpdate;
 import uk.co.hexeption.client.mod.Mod;
 
 @Mod.ModInfo(name = "Fly", description = "de", category = Mod.Category.TEST, bind = Keyboard.KEY_F)
@@ -37,11 +35,5 @@ public class Fly extends Mod {
         mc.player.capabilities.isFlying = true;
     }
 
-    @Override
-    public void onEvent(Event event) {
 
-        if (getState() && event instanceof EventPlayerUpdate && event.getType() == Event.Type.PRE) {
-
-        }
-    }
 }

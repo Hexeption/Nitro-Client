@@ -15,39 +15,40 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event.events;
+package uk.co.hexeption.client.events;
 
-import net.minecraft.network.Packet;
-import uk.co.hexeption.client.event.Event;
+import me.zero.alpine.type.Cancellable;
+import net.minecraft.entity.Entity;
 
-public class EventPacket extends Event {
+public class EventRenderEntities extends Cancellable {
 
-    private final Packet<?> packet;
+    private Entity entity;
 
-    public EventPacket(Type type, Packet<?> packet) {
+    private float ticks;
 
-        super(type);
-        this.packet = packet;
+    public EventRenderEntities(Entity entity, float ticks) {
+
+        this.entity = entity;
+        this.ticks = ticks;
     }
 
-    public <T extends Packet> T getPacketRaw() {
+    public Entity getEntity() {
 
-        return (T) packet;
+        return entity;
     }
 
-    public static class Send extends EventPacket {
+    public void setEntity(Entity entity) {
 
-        public Send(Type type, Packet<?> packet) {
-
-            super(type, packet);
-        }
+        this.entity = entity;
     }
 
-    public static class Receive extends EventPacket {
+    public float getTicks() {
 
-        public Receive(Type type, Packet<?> packet) {
+        return ticks;
+    }
 
-            super(type, packet);
-        }
+    public void setTicks(float ticks) {
+
+        this.ticks = ticks;
     }
 }

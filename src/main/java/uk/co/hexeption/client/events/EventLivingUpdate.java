@@ -15,19 +15,22 @@
  *
  ******************************************************************************/
 
-package uk.co.hexeption.client.event;
+package uk.co.hexeption.client.events;
 
-public interface EventListener {
 
-    default Priority getPriority() {
+import me.zero.alpine.type.EventState;
 
-        return Priority.NORMAL;
+public class EventLivingUpdate {
+
+    private final EventState eventState;
+
+    public EventLivingUpdate(EventState eventState) {
+
+        this.eventState = eventState;
     }
 
-    void onEvent(Event event);
+    public EventState getEventState() {
 
-    enum Priority {
-        LOW, NORMAL, HIGH
+        return eventState;
     }
-
 }
