@@ -72,6 +72,7 @@ dependencies {
 
     compile('org.reflections:reflections:0.9.11') {
         exclude module: 'google-collections'
+        exclude module: 'guava'
     }
     compile('org.spongepowered:mixin:0.6.10-SNAPSHOT') {
         exclude module: 'launchwrapper'
