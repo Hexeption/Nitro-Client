@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "MixinAbstractClientPlayer",
+    "MixinBlock",
     "MixinEntity",
     "MixinEntityLivingBase",
     "MixinEntityPlayerSP",
@@ -14,6 +15,7 @@
     "MixinNetworkManager",
     "MixinRender",
     "MixinRenderLivingBase",
-    "MixinRenderManager"
+    "MixinRenderManager",
+    "MixinVisGraph"
   ]
 }

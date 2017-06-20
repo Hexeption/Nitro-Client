@@ -24,8 +24,12 @@ import org.lwjgl.input.Keyboard;
 import uk.co.hexeption.client.events.EventUpdate;
 import uk.co.hexeption.client.mod.Mod;
 
-@Mod.ModInfo(name = "Fly", description = "de", category = Mod.Category.TEST, bind = Keyboard.KEY_F)
+@Mod.ModInfo(name = "Fly", description = "de", category = Mod.Category.MOVEMENT, bind = Keyboard.KEY_F)
 public class Fly extends Mod {
+
+    /**
+     * Events
+     */
 
     @EventHandler
     private Listener<EventUpdate> eventUpdateListener = new Listener<>(eventUpdate -> {

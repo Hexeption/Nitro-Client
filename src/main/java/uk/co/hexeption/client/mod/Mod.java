@@ -25,7 +25,7 @@ import uk.co.hexeption.client.IMC;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-public abstract class Mod implements IMC{
+public abstract class Mod implements IMC {
 
     private String name = getClass().getAnnotation(ModInfo.class).name();
 
@@ -122,7 +122,13 @@ public abstract class Mod implements IMC{
 
     public enum Category {
 
-        TEST(0x2384542);
+        COMBAT(0x2384542),
+        PLAYER(0x2384542),
+        MOVEMENT(0x2384542),
+        RENDER(0x2384542),
+        WORLD(0x2384542),
+        BUILD(0x2384542),
+        MISC(0x2384542),;
 
         public int color;
 
