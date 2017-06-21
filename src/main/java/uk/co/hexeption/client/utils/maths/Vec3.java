@@ -115,4 +115,11 @@ public class Vec3 {
         return Math.sqrt(((this.x - vec.x) * (this.x - vec.x)) + ((this.y - vec.y) * (this.y - vec.y)) + ((this.z - vec.z) * (this.z - vec.z)));
     }
 
+    public final Vec2 rotateTo(Vec3 vec) {
+        double[] diff = {vec.x - x, vec.y - y, vec.z - z};
+        double hDist = Math.sqrt(diff[0] * diff[0] + diff[2] * diff[2]);
+
+        return new Vec2(Math.toDegrees(Math.atan2(diff[2], diff[0])) - 90F, -Math.toDegrees(Math.atan2(diff[1], hDist)));
+    }
+
 }
