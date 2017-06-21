@@ -7,4 +7,4 @@
 !/README.md
 !/build.gradle
 !/settings.gradle
-!/pom-default.xml
+!/.travis.yml
