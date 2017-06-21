@@ -28,7 +28,7 @@ public class EventMotionUpdate implements IMC {
 
     private static Vec3 pos = new Vec3();
 
-    private static Vec2 roations = new Vec2();
+    private static Vec2 rotations = new Vec2();
 
     private static boolean onGround;
 
@@ -39,7 +39,7 @@ public class EventMotionUpdate implements IMC {
         this.state = state;
         IMixinEntity player = (IMixinEntity) mc.player;
         pos.copyFrom(player.getPos()).setY(mc.player.getEntityBoundingBox().minY);
-        roations.copyFrom(player.getRotations());
+        rotations.copyFrom(player.getRotations());
         onGround = mc.player.onGround;
     }
 
@@ -67,23 +67,23 @@ public class EventMotionUpdate implements IMC {
 
     public final float getYaw() {
 
-        return roations.getX();
+        return rotations.getX();
     }
 
     public EventMotionUpdate setYaw(float yaw) {
 
-        roations.setX(yaw);
+        rotations.setX(yaw);
         return this;
     }
 
     public final float getPitch() {
 
-        return roations.getY();
+        return rotations.getY();
     }
 
     public EventMotionUpdate setPitch(float pitch) {
 
-        roations.setY(pitch);
+        rotations.setY(pitch);
         return this;
     }
 
@@ -105,7 +105,7 @@ public class EventMotionUpdate implements IMC {
 
     public final Vec2 getRoations() {
 
-        return roations;
+        return rotations;
     }
 
     public final double getX() {

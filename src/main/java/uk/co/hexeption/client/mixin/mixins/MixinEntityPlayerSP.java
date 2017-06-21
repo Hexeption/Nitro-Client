@@ -147,8 +147,8 @@ public abstract class MixinEntityPlayerSP extends MixinEntity {
 
         EntityPlayerSP _this = (EntityPlayerSP) (Object) this;
 
-        EventMotionUpdate preMotion = new EventMotionUpdate(EventState.PRE);
-        Client.INSTANCE.eventBus.post(preMotion);
+        EventMotionUpdate pre = new EventMotionUpdate(EventState.PRE);
+        Client.INSTANCE.eventBus.post(pre);
 
         boolean sprinting = this.isSprinting();
         if (sprinting != this.serverSprintState) {
@@ -164,14 +164,14 @@ public abstract class MixinEntityPlayerSP extends MixinEntity {
 
         if (this.isCurrentViewEntity()) {
 
-            double prevX = preMotion.getX();
-            double prevY = preMotion.getY();
-            double prevZ = preMotion.getZ();
+            double prevX = pre.getX();
+            double prevY = pre.getY();
+            double prevZ = pre.getZ();
 
-            float prevYaw = preMotion.getYaw();
-            float prevPitch = preMotion.getPitch();
+            float prevYaw = pre.getYaw();
+            float prevPitch = pre.getPitch();
 
-            boolean prevIsOnGround = preMotion.isOnGround();
+            boolean prevGround = pre.isOnGround();
 
             double d0 = prevX - this.lastReportedPosX;
             double d1 = prevY - this.lastReportedPosY;
@@ -179,20 +179,20 @@ public abstract class MixinEntityPlayerSP extends MixinEntity {
             double d3 = prevYaw - this.lastReportedYaw;
             double d4 = prevPitch - this.lastReportedPitch;
 
-            boolean positions = d0 * d0 + d1 * d1 + d2 * d2 > 9.0E-4D || this.positionUpdateTicks >= 20;
+            boolean positions = d0 * d0 + d1 * d1 + d2 * d2 > 9.0E-4D || ++this.positionUpdateTicks >= 20;
             boolean rotation = d3 != 0.0D || d4 != 0.0D;
 
             if (this.isRiding()) {
                 this.connection.sendPacket(new CPacketPlayer.PositionRotation(this.motionX, -999.0D, this.motionZ, this.rotationYaw, this.rotationPitch, this.onGround));
                 positions = false;
             } else if (positions && rotation) {
-                this.connection.sendPacket(new CPacketPlayer.PositionRotation(prevX, prevY, prevZ, prevYaw, prevPitch, prevIsOnGround));
+                this.connection.sendPacket(new CPacketPlayer.PositionRotation(prevX, prevY, prevZ, prevYaw, prevPitch, prevGround));
             } else if (positions) {
-                this.connection.sendPacket(new CPacketPlayer.Position(prevX, prevY, prevZ, prevIsOnGround));
+                this.connection.sendPacket(new CPacketPlayer.Position(prevX, prevY, prevZ, prevGround));
             } else if (rotation) {
-                this.connection.sendPacket(new CPacketPlayer.Rotation(prevYaw, prevPitch, prevIsOnGround));
-            } else if (this.prevOnGround != prevIsOnGround) {
-                this.connection.sendPacket(new CPacketPlayer(prevIsOnGround));
+                this.connection.sendPacket(new CPacketPlayer.Rotation(prevYaw, prevPitch, prevGround));
+            } else if (this.prevOnGround != prevGround) {
+                this.connection.sendPacket(new CPacketPlayer(prevGround));
             }
 
             if (positions) {
@@ -207,7 +207,7 @@ public abstract class MixinEntityPlayerSP extends MixinEntity {
                 this.lastReportedPitch = prevPitch;
             }
 
-            this.prevOnGround = prevIsOnGround;
+            this.prevOnGround = prevGround;
             this.autoJumpEnabled = this.mc.gameSettings.autoJump;
         }
 
