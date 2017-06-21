@@ -1,7 +1,41 @@
+# Tell Travis this is a Java project
 language: java
+
+# Tell Travis we want container-based builds.
+sudo: false
+
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
 
 jdk:
   - oraclejdk8
 
+
 before_install:
- - chmod +x gradlew
+  - chmod +x gradlew
+
+# Prepare the workspace.
+install:
+  - ./gradlew setupCIWorkspace -S
+
+# Build the Project.
+script:
+  - ./gradlew build -S
+  
+# Clean up after Gradle
+env:
+  global:
+    TERM=dumb
+
+# So the cache doesn't get rebuilt every time.
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+
+# Cache libs, as to improve speed.
+cache:
+  directories:
+    - $HOME/.gradle/caches
+    # So gradle isn't downloaded every time.
+    - $HOME/.gradle/wrapper
