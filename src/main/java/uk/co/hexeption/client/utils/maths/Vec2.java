@@ -100,6 +100,12 @@ public class Vec2 {
         return new Vec2(this.x, this.y);
     }
 
+    public final Vec2 copyFrom(Vec2 vec) {
+
+        this.x = vec.x;
+        this.y = vec.y;
+        return this;
+    }
 
     public final double distance(Vec2 vec) {
 

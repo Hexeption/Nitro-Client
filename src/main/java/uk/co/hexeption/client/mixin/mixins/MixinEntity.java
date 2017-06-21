@@ -68,16 +68,32 @@ public abstract class MixinEntity implements IMixinEntity {
     @Shadow
     public float rotationYaw;
 
+    @Shadow
+    public boolean onGround;
+
+    @Shadow
+    public double motionX;
+
+    @Shadow
+    public double motionY;
+
+    @Shadow
+    public double motionZ;
+
     private Vec3 pos, prevPos, lastTickPos;
 
     private Vec2 rotations, prevRotations;
 
+    @Shadow
+    public abstract boolean isSprinting();
+
+    @Shadow
+    public abstract boolean isRiding();
 
     @Shadow
     public void move(MoverType type, double x, double y, double z) {
 
     }
-
 
 
     @Override

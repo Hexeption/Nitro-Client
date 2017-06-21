@@ -102,6 +102,13 @@ public class Vec3 {
         return new Vec3(this.x, this.y, this.z);
     }
 
+    public final Vec3 copyFrom(Vec3 vec) {
+
+        this.x = vec.x;
+        this.y = vec.y;
+        this.z = vec.z;
+        return this;
+    }
 
     public final double distance(Vec3 vec) {
 
