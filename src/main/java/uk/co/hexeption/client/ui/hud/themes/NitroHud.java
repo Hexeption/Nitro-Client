@@ -1,5 +1,5 @@
 /*******************************************************************************
- *     ITweaker-Client
+ *     Nitro Client
  *     Copyright (C) 2017  Hexeption (Keir Davis)
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ import uk.co.hexeption.client.ui.hud.IGameHud;
 import java.awt.*;
 import java.util.Comparator;
 
-public class TestClient implements IGameHud {
+public class NitroHud implements IGameHud {
 
     private int y;
 
@@ -39,11 +39,11 @@ public class TestClient implements IGameHud {
 
         FontRenderer font = minecraft.fontRenderer;
 
-        font.drawString("Hud Client", 2, 2, new Color(88, 127, 82, 241).hashCode());
+        font.drawString(Client.INSTANCE.clientName + ", " + Client.INSTANCE.clientVersion, 2, 2, new Color(63, 120, 127, 241).hashCode());
 
         y = 2;
         Client.INSTANCE.modManager.getMods().stream().filter(Mod::getState).sorted(Comparator.comparingInt(m -> font.getStringWidth(m.getName()))).forEach(mod -> {
-            font.drawString(mod.getName(), scaledResolution.getScaledWidth() - 5 - font.getStringWidth(mod.getName()), y, new Color(143, 255, 120, 255).hashCode());
+            font.drawString(mod.getName(), scaledResolution.getScaledWidth() - 5 - font.getStringWidth(mod.getName()), y, new Color(61, 105, 255, 255).hashCode());
             y += font.FONT_HEIGHT;
         });
 
@@ -53,7 +53,7 @@ public class TestClient implements IGameHud {
     @Override
     public String name() {
 
-        return "TestClient";
+        return "Nitro";
     }
 
     @Override

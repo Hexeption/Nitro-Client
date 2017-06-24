@@ -1,5 +1,5 @@
 /*******************************************************************************
- *     ITweaker-Client
+ *     Nitro Client
  *     Copyright (C) 2017  Hexeption (Keir Davis)
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -41,13 +41,11 @@ public enum Client implements IMC {
 
     public final String clientName = "Nitro";
 
-    public final String version = "B1-b266386";
+    public final String clientVersion = "B1-20e9b79";
 
     public void start() {
-        //TODO: TEST (Random Alt)
-        Auth.INSTANCE().username("minecraftfun201@gmail.com").password("TZ@80PVNBXFrx%60rU1mx@6g&9dcuAWmlhmS*h712KIyL5@xzJ!tt^OMcJaySPkTI0K3KBI5dKcWeRu&64V!OT5t@OD3gaavkk!@").login();
 
-        LogHelper.info(String.format("Loading %s, Build %s", clientName, version));
+        LogHelper.info(String.format("Loading %s, Build %s", clientName, clientVersion));
 
         LogHelper.info("Loading Mods...");
         modManager.init();

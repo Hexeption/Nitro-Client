@@ -1,5 +1,5 @@
 /*******************************************************************************
- *     ITweaker-Client
+ *     Nitro Client
  *     Copyright (C) 2017  Hexeption (Keir Davis)
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@ import uk.co.hexeption.client.Client;
 import uk.co.hexeption.client.IMC;
 import uk.co.hexeption.client.events.EventHud;
 import uk.co.hexeption.client.events.EventKey;
-import uk.co.hexeption.client.ui.hud.themes.TestClient;
+import uk.co.hexeption.client.ui.hud.themes.NitroHud;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -52,7 +52,7 @@ public class Hud implements IMC {
     public void initialization() {
 
         Client.INSTANCE.eventBus.subscribe(this);
-        this.themes.add(new TestClient());
+        this.themes.add(new NitroHud());
     }
 
     public IGameHud getCurrentTheme() {

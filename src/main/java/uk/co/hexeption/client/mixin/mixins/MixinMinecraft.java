@@ -1,5 +1,5 @@
 /*******************************************************************************
- *     ITweaker-Client
+ *     Nitro Client
  *     Copyright (C) 2017  Hexeption (Keir Davis)
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -73,9 +73,10 @@ public abstract class MixinMinecraft implements IMixinMinecraft {
 
         Client.INSTANCE.eventBus.post(new EventTick());
 
-        if (this.currentScreen instanceof GuiMainMenu) {
-            displayGuiScreen(new MainMenu());
-        }
+//        TODO: Change to the new menu
+//        if (this.currentScreen instanceof GuiMainMenu) {
+//            displayGuiScreen(new MainMenu());
+//        }
 
     }
 
