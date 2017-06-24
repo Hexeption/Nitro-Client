@@ -27,12 +27,15 @@ import org.apache.logging.log4j.Logger;
  * Created by Hexeption on 29/12/2016.
  */
 public class LogHelper {
+    private static final String RESET = "\u001B[0m";
+
+    private static final String CYAN = "\u001B[36m";
 
     private static void log(Level level, Object message) {
 
         Logger logger = LogManager.getLogger("Client");
 
-        logger.log(level, String.valueOf(message));
+        logger.log(level, "[" + CYAN + "Nitro" + RESET + "] " + String.valueOf(message));
     }
 
     /**

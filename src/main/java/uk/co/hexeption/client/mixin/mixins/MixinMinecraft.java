@@ -19,6 +19,8 @@
 package uk.co.hexeption.client.mixin.mixins;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.util.Session;
 import net.minecraft.util.Timer;
@@ -36,6 +38,7 @@ import uk.co.hexeption.client.events.EventKey;
 import uk.co.hexeption.client.events.EventTick;
 import uk.co.hexeption.client.events.EventWorld;
 import uk.co.hexeption.client.mixin.imp.IMixinMinecraft;
+import uk.co.hexeption.client.screen.MainMenu;
 
 import javax.annotation.Nullable;
 
@@ -52,6 +55,13 @@ public abstract class MixinMinecraft implements IMixinMinecraft {
     @Final
     private Timer timer;
 
+    @Shadow
+    @Nullable
+    public GuiScreen currentScreen;
+
+    @Shadow
+    public abstract void displayGuiScreen(@Nullable GuiScreen guiScreenIn);
+
     @Inject(method = "init", at = @At("RETURN"))
     private void init(CallbackInfo callbackInfo) {
 
@@ -62,6 +72,11 @@ public abstract class MixinMinecraft implements IMixinMinecraft {
     private void onTick(CallbackInfo callbackInfo) {
 
         Client.INSTANCE.eventBus.post(new EventTick());
+
+        if (this.currentScreen instanceof GuiMainMenu) {
+            displayGuiScreen(new MainMenu());
+        }
+
     }
 
     @Inject(method = "runTickKeyboard", at = @At(value = "INVOKE", remap = false, target = "Lorg/lwjgl/input/Keyboard;getEventKey()I", ordinal = 0, shift = At.Shift.BEFORE))

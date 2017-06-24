@@ -40,7 +40,6 @@ public class MixinEntityRenderer {
     private void renderWorldPassPost(int pass, float partialTicks, long finishTimeNano, CallbackInfo callbackInfo) {
 
         Client.INSTANCE.eventBus.post(new EventRenderWorld(EventState.POST));
-        ;
     }
 
 

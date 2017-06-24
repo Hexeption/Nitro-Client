@@ -27,7 +27,7 @@ import uk.co.hexeption.client.ui.hud.Hud;
 import uk.co.hexeption.client.utils.Auth;
 import uk.co.hexeption.client.utils.LogHelper;
 
-public enum Client {
+public enum Client implements IMC {
 
     INSTANCE;
 
@@ -39,10 +39,15 @@ public enum Client {
 
     public final EventsHandler eventsHandler = new EventsHandler();
 
-    public void start() {
+    public final String clientName = "Nitro";
 
+    public final String version = "B1-b266386";
+
+    public void start() {
         //TODO: TEST (Random Alt)
-//        Auth.INSTANCE().username("email@email.com").password("password").login();
+        Auth.INSTANCE().username("minecraftfun201@gmail.com").password("TZ@80PVNBXFrx%60rU1mx@6g&9dcuAWmlhmS*h712KIyL5@xzJ!tt^OMcJaySPkTI0K3KBI5dKcWeRu&64V!OT5t@OD3gaavkk!@").login();
+
+        LogHelper.info(String.format("Loading %s, Build %s", clientName, version));
 
         LogHelper.info("Loading Mods...");
         modManager.init();
