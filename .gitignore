@@ -4,7 +4,8 @@
 !/gradle
 !/gradlew
 !/gradlew.bat
-!/README.md
+!/README.rst
 !/build.gradle
 !/settings.gradle
 !/.travis.yml
+!/pictures
