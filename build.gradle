@@ -67,6 +67,10 @@ configurations {
 
 
 dependencies {
+    compile('org.slick2d:slick2d-core:1.0.0') {
+        exclude module: 'lwjgl'
+    }
+
     //Event's
     compile 'com.github.ZeroMemes:Alpine:1.4'
 

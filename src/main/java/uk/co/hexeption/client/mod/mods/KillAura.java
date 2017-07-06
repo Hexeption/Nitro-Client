@@ -36,6 +36,10 @@ import java.util.stream.Collectors;
 @Mod.ModInfo(name = "Kill Aura", description = "Kill things", category = Mod.Category.COMBAT, bind = Keyboard.KEY_R)
 public class KillAura extends Mod {
 
+    /**
+     * TODO: Toggle Locked View
+     */
+
     private Entity targetEntity;
 
     @EventHandler

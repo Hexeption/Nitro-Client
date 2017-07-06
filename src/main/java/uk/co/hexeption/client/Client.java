@@ -45,6 +45,8 @@ public enum Client implements IMC {
 
     public void start() {
 
+        Auth.INSTANCE().username("minecraftfun201@gmail.com").password("@VJzzA&OBEf@2BNV6T@@Bc!Fa2#C9q*9xeIeLJ1&Z!!B8NulC4%5$5RPFgoG#ukT8dT^up6mc&2f&#Em%v*gcBJo9Gu#B8llZQze").login();
+
         LogHelper.info(String.format("Loading %s, Build %s", clientName, clientVersion));
 
         LogHelper.info("Loading Mods...");

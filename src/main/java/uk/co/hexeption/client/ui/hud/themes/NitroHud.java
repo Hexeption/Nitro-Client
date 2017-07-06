@@ -19,9 +19,10 @@
 package uk.co.hexeption.client.ui.hud.themes;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import uk.co.hexeption.client.Client;
+import uk.co.hexeption.client.font.FontLoader;
+import uk.co.hexeption.client.font.MinecraftFontRenderer;
 import uk.co.hexeption.client.mod.Mod;
 import uk.co.hexeption.client.ui.hud.IGameHud;
 
@@ -37,14 +38,15 @@ public class NitroHud implements IGameHud {
 
         ScaledResolution scaledResolution = new ScaledResolution(minecraft);
 
-        FontRenderer font = minecraft.fontRenderer;
+        MinecraftFontRenderer font = FontLoader.INSTANCE.standard20;
+
 
         font.drawString(Client.INSTANCE.clientName + ", " + Client.INSTANCE.clientVersion, 2, 2, new Color(63, 120, 127, 241).hashCode());
 
-        y = 2;
+        y = scaledResolution.getScaledHeight() - 12;
         Client.INSTANCE.modManager.getMods().stream().filter(Mod::getState).sorted(Comparator.comparingInt(m -> font.getStringWidth(m.getName()))).forEach(mod -> {
-            font.drawString(mod.getName(), scaledResolution.getScaledWidth() - 5 - font.getStringWidth(mod.getName()), y, new Color(61, 105, 255, 255).hashCode());
-            y += font.FONT_HEIGHT;
+            font.drawString(mod.getName(), scaledResolution.getScaledWidth() - 2 - font.getStringWidth(mod.getName()), y, new Color(61, 105, 255, 255).hashCode());
+            y -= 11;
         });
 
     }
