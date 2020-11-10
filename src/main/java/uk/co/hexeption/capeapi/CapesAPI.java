@@ -21,7 +21,7 @@ public class CapesAPI {
     /**
      * Base URL to fetch the capes from
      */
-    private static final String BASE_URL = "http://capesapi.com/api/v1/%s/getCape";
+    private static final String BASE_URL = "http://api.capes.dev/load/%s/";
 
     /**
      * Holds a list of UUIDs whose cape is currently being fetched
